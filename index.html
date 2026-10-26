@@ -75,7 +75,38 @@ WhatsApp ਤੇ ਸੰਪਰਕ ਕਰੋ
   <button type="submit">Submit Registration</button>
 </form>
 
-<p id="message"></p>  
+<p id="message"></p>
+<script>
+document.getElementById("customerForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = {
+    name: document.getElementById("name").value,
+    mobile: document.getElementById("mobile").value,
+    city: document.getElementById("city").value
+  };
+
+  const message = document.getElementById("message");
+  message.innerText = "Please wait...";
+
+  try {
+    await fetch("https://script.google.com/macros/s/AKfycbzCrAWiZK42dhDK7nd2xRqdP6Wg8RfTJNe7g_c4iobVjE9EIEDkCuBe19kTGBZvh9A/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain"
+      },
+      body: JSON.stringify(data)
+    });
+
+    message.innerText = "Thank you! Registration submitted.";
+    document.getElementById("customerForm").reset();
+
+  } catch (error) {
+    message.innerText = "Error! Please try again.";
+  }
+});
+</script>  
 </body>
   
 </html>
