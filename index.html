@@ -118,7 +118,16 @@ document.getElementById("customerForm").addEventListener("submit", function() {
   window.open("https://wa.me/919056397258?text=" +
     encodeURIComponent(msg), "_blank");
 });
-</script> 
+</script> document.getElementById("customerForm").addEventListener("submit", function() {
+  const name = document.getElementById("name").value;
+  const mobile = document.getElementById("mobile").value;
+  const city = document.getElementById("city").value;
+
+  const msg = "New Customer Registration\nName: " + name +
+    "\nMobile: " + mobile + "\nCity: " + city;
+
+  window.open("https://wa.me/919056397258?text=" + encodeURIComponent(msg), "_blank");
+});
 </body>
   
 </html>
