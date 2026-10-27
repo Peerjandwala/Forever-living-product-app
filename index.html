@@ -98,7 +98,10 @@ document.getElementById("customerForm").addEventListener("submit", async functio
       },
       body: JSON.stringify(data)
     });
+const msg = "New Customer Registration\nName: " + data.name +
+  "\nMobile: " + data.mobile + "\nCity: " + data.city;
 
+window.location.href = "https://wa.me/919056397258?text=" + encodeURIComponent(msg);
     message.innerText = "Thank you! Registration submitted.";
     document.getElementById("customerForm").reset();
 
