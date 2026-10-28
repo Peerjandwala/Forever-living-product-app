@@ -94,6 +94,7 @@ function showProducts(){
  document.getElementById("products").innerHTML=filtered.length
  ? filtered.map(p=>`
   <div class="product">
+  <img src="${p.image || ''}" alt="${p.name}" style="width:100%;height:180px;object-fit:contain;">
    <div class="tag">${p.category}</div>
    <h3>${p.name}</h3>
    <p>${p.description}</p>
