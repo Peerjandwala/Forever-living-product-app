@@ -3,113 +3,126 @@
 <html lang="pa">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forever Business App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forever Living Products Catalogue</title>
 <style>
+*{box-sizing:border-box}
 body{font-family:Arial;margin:0;background:#f0f7f0;color:#164b2b}
-header{background:#176b36;color:white;text-align:center;padding:25px}
-.card{background:white;margin:15px;padding:20px;border-radius:12px}
-button{background:#176b36;color:white;padding:12px;border:0;border-radius:8px}
+header{background:#176b36;color:white;text-align:center;padding:25px 12px}
+section{padding:16px;max-width:900px;margin:auto}
+.card{background:white;margin:12px 0;padding:18px;border-radius:12px;box-shadow:0 2px 8px #0001}
+button,.wa{background:#176b36;color:white;padding:12px 16px;border:0;border-radius:8px;text-decoration:none;display:inline-block}
+input,select{width:100%;padding:13px;margin:7px 0;border:1px solid #bbb;border-radius:8px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.product{background:white;padding:17px;border-radius:12px}
+.product h3{margin-top:5px}
+.tag{font-size:13px;color:#55745e}
+footer{text-align:center;padding:20px}
 </style>
 </head>
 <body>
+
 <header>
-<h1>Forever Business</h1>
+<h1>Forever Living</h1>
+<p>Our Products Catalogue</p>
 <p>Welcome to Our Business App</p>
 </header>
+
+<section>
 <div class="card">
 <h2>ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਜੀ!</h2>
-<p>ਤੁਹਾਡੀ ਆਪਣੀ Forever Business App ਵਿੱਚ ਜੀ ਆਇਆਂ ਨੂੰ।</p>
+<p>Forever Living Products ਦੀ ਜਾਣਕਾਰੀ ਲਈ ਸਵਾਗਤ ਹੈ।</p>
+<a class="wa" href="https://wa.me/919056397258">WhatsApp ਤੇ ਸੰਪਰਕ ਕਰੋ</a>
 </div>
+
+<h2>Our Products</h2>
+<input id="search" placeholder="Search Product..." oninput="showProducts()">
+<select id="category" onchange="showProducts()">
+<option value="All">All Categories</option>
+<option value="Aloe Vera">Aloe Vera</option>
+<option value="Nutrition">Nutrition</option>
+<option value="Personal Care">Personal Care</option>
+<option value="Skin Care">Skin Care</option>
+<option value="Bee Products">Bee Products</option>
+</select>
+
+<div class="products" id="products"></div>
+
 <div class="card">
-<h3>Our Products</h3>
-<p>Forever Products ਦੀ ਜਾਣਕਾਰੀ।</p>
-</div>
-<div class="card">
-<h3>Join Our Team</h3>
+<h2>Join Our Team</h2>
 <p>Online Business Work From Home</p>
-<button>Join Now</button>
+<a class="wa" href="https://wa.me/919056397258?text=I%20am%20interested%20in%20Forever%20Business">Join Now</a>
 </div>
+
 <div class="card">
-<h3>Contact Us</h3>
-<p>ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।</p>
-</div>
-<div style="text-align:center;margin:25px">
-<a href="https://wa.me/919056397258"
-style="background:#168b45;color:white;padding:15px 25px;
-border-radius:12px;text-decoration:none;font-weight:bold;
-display:inline-block">
-WhatsApp ਤੇ ਸੰਪਰਕ ਕਰੋ
-</a>
-</div>
-<section style="padding:20px;text-align:center;background:#f0f7f0">
-<h2>Our Forever Products</h2>
-<div style="background:white;padding:15px;margin:10px;border-radius:12px">
-<h3>Aloe Vera Gel</h3>
-<p>Forever Aloe Vera Gel ਬਾਰੇ ਜਾਣਕਾਰੀ।</p>
-<a href="https://wa.me/919056397258">WhatsApp Inquiry</a>
-</div>
-<div style="background:white;padding:15px;margin:10px;border-radius:12px">
-<h3>Forever Arctic Sea</h3>
-<p>Product information.</p>
-<a href="https://wa.me/919056397258">WhatsApp Inquiry</a>
-</div>
-<div style="background:white;padding:15px;margin:10px;border-radius:12px">
-<h3>Aloe Berry Nectar</h3>
-<p>Product information.</p>
-<a href="https://wa.me/919056397258">WhatsApp Inquiry</a>
+<h2>Customer Registration</h2>
+<form id="customerForm">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="tel" id="mobile" placeholder="Mobile Number" required>
+<input type="text" id="city" placeholder="Your City" required>
+<button type="submit">Submit Registration</button>
+</form>
+<p id="message"></p>
 </div>
 </section>
-<h2>Customer Registration</h2>
 
-<form id="customerForm">
-  <input type="text" id="name" placeholder="Your Name" required>
-  <br><br>
+<footer>Forever Living Products Catalogue</footer>
 
-  <input type="tel" id="mobile" placeholder="Mobile Number" required>
-  <br><br>
-
-  <input type="text" id="city" placeholder="Your City" required>
-  <br><br>
-
-  <button type="submit">Submit Registration</button>
-</form>
-
-<p id="message"></p>
 <script>
-document.getElementById("customerForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
+const whatsapp = "919056397258";
 
-  const data = {
-    name: document.getElementById("name").value,
-    mobile: document.getElementById("mobile").value,
-    city: document.getElementById("city").value
-  };
+const productList = [
+{name:"Forever Aloe Vera Gel",category:"Aloe Vera",description:"Aloe Vera drink product information."},
+{name:"Forever Aloe Berry Nectar",category:"Aloe Vera",description:"Aloe Vera drink with berry flavour."},
+{name:"Forever Aloe Peaches",category:"Aloe Vera",description:"Aloe Vera drink with peach flavour."},
+{name:"Forever Arctic Sea",category:"Nutrition",description:"Omega-3 nutritional supplement."}
+];
 
-  const message = document.getElementById("message");
-  message.innerText = "Please wait...";
+function showProducts(){
+ const search=document.getElementById("search").value.toLowerCase();
+ const category=document.getElementById("category").value;
+ const filtered=productList.filter(p=>
+  (category==="All" || p.category===category) &&
+  p.name.toLowerCase().includes(search)
+ );
+ document.getElementById("products").innerHTML=filtered.length
+ ? filtered.map(p=>`
+  <div class="product">
+   <div class="tag">${p.category}</div>
+   <h3>${p.name}</h3>
+   <p>${p.description}</p>
+   <a class="wa" target="_blank"
+   href="https://wa.me/${whatsapp}?text=${encodeURIComponent("Hello, I want information about "+p.name)}">
+   WhatsApp Inquiry
+   </a>
+  </div>`).join("")
+ : "<p>No products found.</p>";
+}
+showProducts();
 
-  try {
-    await fetch("https://script.google.com/macros/s/AKfycbzCrAWiZK42dhDK7nd2xRqdP6Wg8RfTJNe7g_c4iobVjE9EIEDkCuBe19kTGBZvh9A/exec", {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain"
-      },
-      body: JSON.stringify(data)
-    });
-const msg = "New Customer Registration\nName: " + data.name +
-  "\nMobile: " + data.mobile + "\nCity: " + data.city;
-
-window.open("https://wa.me/919056397258?text=" + encodeURIComponent(msg), "_blank");
-    message.innerText = "Thank you! Registration submitted.";
-    document.getElementById("customerForm").reset();
-
-  } catch (error) {
-    message.innerText = "Error! Please try again.";
-  }
+document.getElementById("customerForm").addEventListener("submit",async function(e){
+ e.preventDefault();
+ const data={
+  name:document.getElementById("name").value,
+  mobile:document.getElementById("mobile").value,
+  city:document.getElementById("city").value
+ };
+ document.getElementById("message").innerText="Please wait...";
+ try{
+  await fetch("https://script.google.com/macros/s/AKfycbzCrAWiZK42dhDK7nd2xRqdP6Wg8RfTJNe7g_c4iobVjE9EIEDkCuBe19kTGBZvh9A/exec",{
+   method:"POST",mode:"no-cors",
+   headers:{"Content-Type":"text/plain"},
+   body:JSON.stringify(data)
+  });
+  const msg="New Customer Registration\nName: "+data.name+
+  "\nMobile: "+data.mobile+"\nCity: "+data.city;
+  window.open("https://wa.me/"+whatsapp+"?text="+encodeURIComponent(msg),"_blank");
+  document.getElementById("message").innerText="Registration submitted. Please confirm your details.";
+  document.getElementById("customerForm").reset();
+ }catch(error){
+  document.getElementById("message").innerText="Error! Please try again.";
+ }
 });
-</script> 
+</script>
 </body>
-  
 </html>
